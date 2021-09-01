@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/custom.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <title>Team Exchange</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+</head>
+<body>
+
+<div class="app" id="app">
+    <div class="tokens">
+        <div class="coin-button mb-5">
+            <div class="row">
+                <div class="col-4 ico">
+                    <button v-on:click="connectTeam">
+                        <img src="images/TEAM.png" alt="TEAM">
+                    </button>
+                </div>
+                <div class="col-4 ico">
+                    <button v-on:click="connectSLP">
+                        <img src="images/SLP.png" alt="SLP">
+                    </button>
+                </div>
+                <div class="col-4 ico">
+                    <button v-on:click="connectAXS">
+                        <img src="images/AXS.png" alt="AXS">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="title text-center mb-5">
+            <h2>+ ADD TOKEN TO METAMASK</h2>
+        </div>
+        <div class="text">
+            <div class="item">
+                <div class="token-name">TEAM</div>
+                <div class="token-desc">0x84f93cc4dc3ebe0e4f80de867916de26ad1ea002</div>
+            </div>
+            <div class="item">
+                <div class="token-name">SLP</div>
+                <div class="token-desc">0xCC8Fa225D80b9c7D42F96e9570156c65D6cAAa25</div>
+            </div>
+            <div class="item">
+                <div class="token-name">AXS</div>
+                <div class="token-desc">0xbb0e17ef65f82ab018d8edd776e8dd940327b28b</div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center">
+        2020 SINGAPORE
+    </footer>
+</div>
+
+
+<script>
+    const app = new Vue({
+        el: '#app',
+        data() {
+            return {
+                status: true,
+            }
+        },
+        methods: {
+            connectAXS: function (event) {
+                web3.currentProvider.sendAsync({
+                    method: 'metamask_watchAsset',
+                    params: {
+                        "type": "ERC20",
+                        "options": {
+                            "address": "0xbb0e17ef65f82ab018d8edd776e8dd940327b28b",
+                            "symbol": "AXS",
+                            "decimals": 18,
+                            "image": 'https://etherscan.io/token/images/axieinfinityshard_32.png'
+                        },
+                    },
+                    id: 20,
+                }, console.log)
+            },
+            connectSLP: function (event) {
+                web3.currentProvider.sendAsync({
+                    method: 'metamask_watchAsset',
+                    params: {
+                        "type": "ERC20",
+                        "options": {
+                            "address": "0xCC8Fa225D80b9c7D42F96e9570156c65D6cAAa25",
+                            "symbol": "SLP",
+                            "decimals": 0,
+                            "image": 'https://etherscan.io/token/images/slp_32.png'
+                        },
+                    },
+                    id: 20,
+                }, console.log)
+            },
+            connectSushi: function (event) {
+                web3.currentProvider.sendAsync({
+                    method: 'metamask_watchAsset',
+                    params: {
+                        "type": "ERC20",
+                        "options": {
+                            "address": "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2",
+                            "symbol": "Sushi",
+                            "decimals": 18,
+                            "image": 'https://app.sushi.com/_next/image?url=%2Fimages%2Ftokens%2Fsushi-square.jpg&w=48&q=75'
+                        },
+                    },
+                    id: 20,
+                }, console.log)
+            },
+            connectTeam: function (event) {
+                web3.currentProvider.sendAsync({
+                    method: 'metamask_watchAsset',
+                    params: {
+                        "type": "ERC20",
+                        "options": {
+                            "address": "0x84f93cc4dc3ebe0e4f80de867916de26ad1ea002",
+                            "symbol": "TEAM",
+                            "decimals": 8,
+                            "image": 'https://raw.githubusercontent.com/Team-Exchange/icons/master/TE_SMALL.png'
+                        },
+                    },
+                    id: 20,
+                }, console.log)
+            },
+        },
+    })
+
+    function checkMetamask() {
+        return typeof window.ethereum !== 'undefined';
+
+    }
+
+
+    // https://script.google.com/macros/s/AKfycbwroHgN0YC54Je-yT-Z729112peWYnZ_xf75l8jaHU1Z-edjvT5xYuhyrPj8i8W0CqFdA/exec
+</script>
+</body>
+</html>
